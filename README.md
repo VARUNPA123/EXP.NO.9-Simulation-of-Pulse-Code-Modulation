@@ -7,6 +7,13 @@ To simulate Pulse Code Modulation which converts an analog input signal into dig
 Google Colab
 
 # ALGORITHMS
+1. **Define parameters**: Set the sampling rate, message signal frequency, duration, and quantization levels.  
+2. **Generate time vector**: Create a time sequence for the defined duration and sampling rate.  
+3. **Create message signal**: Generate a sine wave signal with the specified frequency.  
+4. **Generate clock signal**: Construct a sampling clock signal with a frequency of 200 Hz using a sine wave.  
+5. **Quantize message signal**: Compute the quantization step size and round the message signal to the nearest quantized value.  
+6. **Simulate PCM signal**: Normalize the quantized signal and convert it into integer values for digital representation.  
+7. **Plot signals**: Visualize the message signal, clock signal, quantized PCM signal, and demodulated signal.
 
 # PROGRAM
     import numpy as np
