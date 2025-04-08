@@ -2,8 +2,7 @@
 9.Simulation of PCM
 
 # AIM
-To simulate Pulse Code Modulation
-
+To simulate Pulse Code Modulation which converts an analog input signal into digital data by sampling, quantizing and encoding.
 # SOFTWARE REQUIRED
 Google Colab
 
@@ -78,3 +77,4 @@ Google Colab
 ![image](https://github.com/user-attachments/assets/7282069e-0354-49f4-a322-2ff8e70f094e)
 
 # RESULT / CONCLUSIONS
+Thus, the simulation of Pulse Code Modulation is carried out successfully using Python and the output waveform is observed. 
