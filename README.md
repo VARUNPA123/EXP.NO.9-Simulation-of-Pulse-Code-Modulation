@@ -29,10 +29,16 @@ Google Colab
     t = np.linspace(0, duration, int(sampling_rate * duration), endpoint=False)
 
     # Generate message signal (analog signal)
-    message_signal = np.sin(2 * np.pi * frequency * t)
+    message_signal1 = np.sin(2 * np.pi * frequency1 * t)
+    message_signal2 = np.sin(2 * np.pi * frequency2 * t)
 
     # Generate clock signal (sampling clock) with higher frequency than before
     clock_signal = np.sign(np.sin(2 * np.pi * 200 * t))  # Increased clock frequency to 200 Hz
+
+    # Time-Division Multiplexing (TDM): Interleave both signals
+    multiplexed_signal = np.zeros_like(t)
+    multiplexed_signal[::2] = message_signal1[::2]  # Assign odd samples to signal1
+    multiplexed_signal[1::2] = message_signal2[1::2]  # Assign even samples to signal2
 
     # Quantize the message signal
     quantization_step = (max(message_signal) - min(message_signal)) / quantization_levels
@@ -45,16 +51,24 @@ Google Colab
     # Plotting the results
     plt.figure(figsize=(12, 10))
 
-    # Message signal
-    plt.subplot(4, 1, 1)
-    plt.plot(t, message_signal, label="Message Signal", color='blue')
+    # Message signal 1
+    plt.subplot(5, 1, 1)
+    plt.plot(t, message_signal1, label="Message Signal 1", color='blue')
+    plt.title("Message Signal")
+    plt.xlabel("Time [s]")
+    plt.ylabel("Amplitude")
+    plt.grid(True)
+
+    # Message signal 2
+    plt.subplot(5, 1, 2)
+    plt.plot(t, message_signal2, label="Message Signal 2", color='blue')
     plt.title("Message Signal")
     plt.xlabel("Time [s]")
     plt.ylabel("Amplitude")
     plt.grid(True)
 
     # Clock signal (higher frequency)
-    plt.subplot(4, 1, 2)
+    plt.subplot(5, 1, 3)
     plt.plot(t, clock_signal, label="Clock Signal (Increased Frequency)", color='brown')
     plt.title("Clock Signal (Increased Frequency)")
     plt.xlabel("Time [s]")
@@ -62,7 +76,7 @@ Google Colab
     plt.grid(True)
 
     # PCM modulated signal (quantized)
-    plt.subplot(4, 1, 3)
+    plt.subplot(5, 1, 4)
     plt.step(t, quantized_signal, label="PCM Modulated Signal", color='green')
     plt.title("PCM Modulated Signal (Quantized)")
     plt.xlabel("Time [s]")
@@ -70,7 +84,7 @@ Google Colab
     plt.grid(True)
 
     # PCM Demodulation
-    plt.subplot(4, 1, 4)
+    plt.subplot(5, 1, 5)
     plt.plot(t, quantized_signal, label="Signal Demodulation", color='red', linestyle='--')
     plt.title("Signal Without Demodulation")
     plt.xlabel("Time [s]")
